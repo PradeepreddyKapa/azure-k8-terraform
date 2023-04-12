@@ -1,5 +1,7 @@
 trigger:
 - main
+
+
 # strategy:
 #   matrix:
 #     linux: 
@@ -16,7 +18,6 @@ stages:
     - job: Buildjob
       steps: 
       - script: echo "Do the Build"
-      cancelTimeoutInMinutes: 
   - stage: Devdeploy
     dependsOn: Build
     jobs: 
