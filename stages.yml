@@ -10,7 +10,7 @@ stages:
    - job: firstjob
      steps:
       - bash: echo Firstjob build complete
-      - bash: $(pipelinevariable)
+      - bash: echo $(pipelinevariable)
    - job: secondjob
      steps:
       - bash: echo secondjob build complete  
