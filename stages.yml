@@ -9,15 +9,6 @@ stages:
    jobs:
    - job: firstjob
      steps:
-      - bash: echo Firstjob build complete
-      - bash: echo $(pipelinevariable)
-      - bash: echo $(Build.BuildNumber)
-      - bash: echo $(Build.BuildId)
-      - bash: echo $(Build.SourceBranchName)
-      - bash: echo $(Build.SourceDirectory)
-      - bash: echo $(System.DefaultWorkingDirectory)
-      - bash: ls -R $(System.DefaultWorkingDirectory)
-      - bash: echo $(Build.ArtifactStagingDirectory)
       - bash: java -version
       - bash: mvn -version
       - bash: python --version
