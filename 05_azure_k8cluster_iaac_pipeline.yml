@@ -17,7 +17,7 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    commandOptions: '-var client_id=$(client_id) -var ssh_public_key=$(client_secret) -var client_secret=$(public_key.secureFilepath)'
+    # commandOptions: '-var client_id=$(client_id) -var ssh_public_key=$(client_secret) -var client_secret=$(public_key.secureFilepath)'
     backendType: 'azurerm'
     backendServiceArm: 'Azure_resource_manager_svc_connection'
     ensureBackend: true
@@ -26,4 +26,12 @@ steps:
     backendAzureRmStorageAccountName: 'sadeepu34946'
     backendAzureRmContainerName: 'sadeepu34946container'
     backendAzureRmKey: 'kubernetes_dev.tfstate'
+    allowTelemetryCollection: true
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'Azure_resource_manager_svc_connection'
+    commandOptions: '-var client_id=$(client_id) -var ssh_public_key=$(client_secret) -var client_secret=$(public_key.secureFilepath)'
     allowTelemetryCollection: true
