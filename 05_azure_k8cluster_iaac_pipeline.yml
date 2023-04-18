@@ -38,6 +38,6 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'destroy'
-    environmentServiceName: 'Azure_resource_manager_svc_connection'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'Azure_resource_manager_svc_connection'
     allowTelemetryCollection: true
