@@ -33,5 +33,5 @@ steps:
     command: 'apply'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'Azure_resource_manager_svc_connection'
-    commandOptions: '-var client_id=$(client_id) -var ssh_public_key=$(client_secret) -var client_secret=$(public_key.secureFilepath)'
+    commandOptions: '-var client_id=$(client_id) -var ssh_public_key=$(client_secret) -var client_secret=$(public_key.SecureFilepath)'
     allowTelemetryCollection: true
