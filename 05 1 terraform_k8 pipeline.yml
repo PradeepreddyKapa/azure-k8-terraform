@@ -1,0 +1,28 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'azure_rsa.pub'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    backendType: 'azurerm'
+    backendServiceArm: 'Azure_resource_manager_svc_connection'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform_backend_rg'
+    backendAzureRmResourceGroupLocation: 'westeurope'
+    backendAzureRmStorageAccountName: 'sadeepu34946'
+    backendAzureRmContainerName: 'sadeepu34946container'
+    backendAzureRmKey: 'kubernetes_dev.tfstate'
+    allowTelemetryCollection: true
