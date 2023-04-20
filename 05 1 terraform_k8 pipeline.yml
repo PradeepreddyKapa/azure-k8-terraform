@@ -10,6 +10,7 @@ steps:
 
 
 - task: DownloadSecureFile@1
+  name: public_key
   inputs:
     secureFile: 'azure_rsa.pub'
 
