@@ -4,11 +4,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-
 - task: DownloadSecureFile@1
   name: public_key
   inputs:
@@ -34,16 +29,21 @@ steps:
 #     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
 #     allowTelemetryCollection: true
 # #     lockID: '08777417-ef16-1dc2-2644-07ecd625d29d'
-# - task: TerraformCLI@0
-#   inputs:
-#     command: 'apply'
-#     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-#     environmentServiceName: 'Azure_resource_manager_svc_connection'
-#     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(public_key.SecureFilepath)'
-#     allowTelemetryCollection: true
 
 - task: TerraformCLI@0
   inputs:
-    command: 'destroy'
+    command: 'apply'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'Azure_resource_manager_svc_connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(public_key.SecureFilepath)'
+    allowTelemetryCollection: true
+
+steps:
+- script: ls -l
+  displayName: 'Run a one-line script'
+
+# - task: TerraformCLI@0
+#   inputs:
+#     command: 'destroy'
+#     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+#     environmentServiceName: 'Azure_resource_manager_svc_connection'
